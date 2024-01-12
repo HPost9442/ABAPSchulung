@@ -1,0 +1,5 @@
+@EndUserText.label: 'Movie Service Def'
+define service ZUI_S4D_Movie {
+  expose ZC_S4D_Movie;
+  expose ZC_S4D_Rating;
+}

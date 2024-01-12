@@ -1,0 +1,62 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {  typeNamePlural:  'Movies', typeName: 'Movie', imageUrl: 'ImageURL', title: { value: 'Title' }, description: { value: 'PublishingYear' } }
+@UI.presentationVariant: [{ sortOrder: [{ by: 'AverageRating', direction: #DESC }] }]
+
+annotate view ZC_S4D_Movie with
+{
+  @UI.facet: [
+  {position: 10, type: #FIELDGROUP_REFERENCE, targetQualifier: 'Details', label: 'Movie Details'},
+  { position:20, type:#FIELDGROUP_REFERENCE, targetQualifier: 'Admin', label: 'Administrative Data' },
+  { position: 30, type:#LINEITEM_REFERENCE, targetElement: '_Ratings', label: 'User Ratings' }
+//  { id: 'rating', type: #DATAPOINT_REFERENCE, targetElement: 'AverageRating', targetQualifier: 'Aggregated'  }
+  ]
+
+  @UI.lineItem: [{ position: 10 }]
+  @UI.fieldGroup: [{ qualifier: 'Details', position: 10 }]
+  Title;
+
+  @UI.selectionField: [{ position: 10 }]
+  @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [{ qualifier: 'Details', position: 20, label: 'Genre' }]
+  Genre;
+
+  @UI.selectionField: [{ position: 20 }]
+  @UI.lineItem: [{ position: 30 }]
+  @UI.fieldGroup: [{ qualifier: 'Details', position: 30 }]
+  PublishingYear;
+
+  @UI.selectionField: [{ position: 30 }]
+  @UI.lineItem: [{ position: 40}]
+  @UI.fieldGroup: [{ qualifier: 'Details', position: 40 }]
+  RuntimeInMin;
+  
+  @UI.lineItem: [{ position: 50,
+  valueQualifier:'AverageRating', type: #AS_DATAPOINT, label: 'Average Rating'}]
+  @UI.dataPoint: { targetValue: 5, visualization: #RATING }
+  @UI.fieldGroup: [{ qualifier: 'Details', position: 50, label: 'Rating', criticality: 'AverageRatingCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  AverageRating;
+  
+  @UI.lineItem: [{ position: 45, label: 'Runtime' }]
+  @UI.fieldGroup: [{ qualifier: 'Details', position: 45, label: 'Runtime' }]
+  RuntimeText; 
+  
+  @UI.fieldGroup: [{ qualifier: 'Admin', position: 10 }]
+  MovieUUID;
+
+  @UI.fieldGroup: [{ qualifier: 'Admin', position: 20 }]
+  CreatedAt;
+
+  @UI.fieldGroup: [{ qualifier: 'Admin', position: 30 }]
+  CreatedBy;
+
+  @UI.fieldGroup: [{ qualifier: 'Admin', position: 40 }]
+  LastChangedAt;
+
+  @UI.fieldGroup: [{ qualifier: 'Admin', position: 50 }]
+  LastChangedBy;
+
+  
+  
+  
+  
+}

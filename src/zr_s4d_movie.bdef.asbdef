@@ -1,0 +1,51 @@
+ managed;
+
+ define behavior for ZR_S4D_Movie
+ persistent table zabap_movie_a
+ lock master
+ {
+
+   field ( readonly, numbering : managed )
+   MovieUUID;
+
+   create;
+   update;
+   delete;
+   association _Ratings { create; }
+
+   mapping for zabap_movie_a corresponding
+     {
+       MovieUUID      = movie_uuid;
+       PublishingYear = publishing_year;
+       RuntimeInMin   = runtime_in_min;
+       ImageURL       = image_url;
+       CreatedAt      = created_at;
+       CreatedBy      = created_by;
+       LastChangedAt  = last_changed_at;
+       LastChangedBy  = last_changed_by;
+     }
+ }
+
+ define behavior for ZR_S4D_Rating
+ persistent table zabap_rating_a
+ lock dependent by _Movie
+
+ {
+
+   update;
+   delete;
+   field ( readonly ) MovieUUID;
+   field ( readonly, numbering : managed ) RatingUUID;
+
+   association _Movie;
+
+   mapping for zabap_rating_a corresponding
+     {
+       RatingUUID = rating_uuid;
+       MovieUUID  = movie_uuid;
+       UserName   = user_name;
+       RatingDate = rating_date;
+     }
+
+
+ }

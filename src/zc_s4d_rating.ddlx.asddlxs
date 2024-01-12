@@ -1,0 +1,30 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: { typeNamePlural: 'Ratings', description:{ value: 'UserName'  }, title: { value: 'Rating'} }
+annotate view ZC_S4D_Rating
+  with 
+{
+  @UI.facet: [
+  { position: 10, targetQualifier: 'Details', type: #FIELDGROUP_REFERENCE, label: 'Rating Details' },
+  { position: 20, targetQualifier: 'Administrative', type: #FIELDGROUP_REFERENCE, label: 'Administrative Data' }
+  ]
+@UI.fieldGroup: [{ qualifier: 'Details', position: 10 }]
+  @UI.lineItem: [{ position: 10 }]
+  UserName;
+  
+  @UI.fieldGroup: [{ qualifier: 'Details', position: 20 }]
+  @UI.lineItem: [{ position: 20 }]
+  Rating;
+  
+  @UI.fieldGroup: [{ qualifier: 'Administrative', position: 10 }]
+  @UI.lineItem: [{ position: 30 }]
+  RatingDate;
+  
+  @UI.fieldGroup: [ { qualifier: 'Administrative', position: 20 } ]
+  MovieUUID;
+  
+  @UI.fieldGroup: [ { qualifier: 'Administrative', position: 30 } ]
+  RatingUUID;
+  
+  
+}
